@@ -1,8 +1,8 @@
 {
-  "name": "__MSG_appName__",
+  "name": "chatwork-stickers",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "__MSG_appDescription__",
+  "description": "Chatwork Stickers",
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"
@@ -32,8 +32,8 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://www.chatwork.com/*",
+        "https://kcw.kddi.ne.jp/*"
       ],
       "js": [
         "scripts/contentscript.js"
