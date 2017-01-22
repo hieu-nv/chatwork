@@ -5,6 +5,10 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import {stream as wiredep} from 'wiredep';
 
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import es from 'event-stream';
+
 const $ = gulpLoadPlugins();
 
 gulp.task('extras', () => {
@@ -78,12 +82,35 @@ gulp.task('chromeManifest', () => {
   .pipe(gulp.dest('dist'));
 });
 
+// gulp.task('babel', () => {
+//   return gulp.src('src/**/*.js')
+//       .pipe($.babel({
+//         presets: ['es2015']
+//       }))
+//       .pipe(gulp.dest('app/scripts'));
+// });
+
 gulp.task('babel', () => {
-  return gulp.src('src/**/*.js')
-      .pipe($.babel({
-        presets: ['es2015']
-      }))
+  let files = [
+    'background.js',
+    'chromereload.js',
+    'contentscript.js',
+    'stickers.js',
+    'options.js',
+    'popup.js'
+  ];
+
+  let tasks = files.map( file => {
+    return browserify({
+      entries: './src/' + file,
+      debug: true
+    }).transform('babelify', { presets: ['es2015'] })
+      .bundle()
+      .pipe(source(file))
       .pipe(gulp.dest('app/scripts'));
+  });
+
+  return es.merge.apply(null, tasks);
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
