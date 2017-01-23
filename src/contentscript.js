@@ -1,9 +1,13 @@
 'use strict';
-// import jQuery from 'jquery';
-// import {DEFAULT_BASE_URL} from './constants';
-console.log('[Chatwork Stickers] contentscript.js');
-// console.log(Html.encode('<(~~)>'));
-// console.log(Html.decode(Html.encode('<(~~)>')));
+import DefaultSticker from './DefaultSticker';
+import VietnameseSticker from './VietnameseSticker';
+import JapaneseSticker from './JapaneseSticker';
+import SkypeSticker from './SkypeSticker';
+
+new DefaultSticker().load();
+new VietnameseSticker().load();
+new JapaneseSticker().load();
+new SkypeSticker().load();
 
 if (chrome && chrome.extension) {
   let script = document.createElement('script');
