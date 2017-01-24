@@ -1,4 +1,5 @@
 'use strict';
+
 import DefaultSticker from './DefaultSticker';
 import VietnameseSticker from './VietnameseSticker';
 import JapaneseSticker from './JapaneseSticker';
@@ -10,7 +11,12 @@ new JapaneseSticker().load();
 new SkypeSticker().load();
 
 if (chrome && chrome.extension) {
-  let script = document.createElement('script');
+  const script = document.createElement('script');
   script.src = chrome.extension.getURL('scripts/stickers.js');
-  (document.body || document.head || document.documentElement).appendChild(script);
+  const e = document.body || document.head || document.documentElement;
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = chrome.extension.getURL('styles/main.css');
+  e.appendChild(css);
+  e.appendChild(script);
 }

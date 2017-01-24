@@ -30,10 +30,10 @@ class Sticker {
   }
 
   load() {
-    console.log('Sticker::load()', this.contentUrl);
+    // console.log('Sticker::load()', this.contentUrl);
     jQuery.getJSON(this.contentUrl, (obj) => {
       if (!this.ajv(obj) || this.json.version >= obj['data_version']) {
-        console.log('[Chatwork Stickers] Sticker::load()', this.json);
+        // console.log('[Chatwork Stickers] Sticker::load()', this.json);
         return;
       }
       this.json.name = obj['data_name'];
@@ -44,7 +44,7 @@ class Sticker {
           src: emoticon.src.indexOf('https') >= 0 && emoticon.src.indexOf('http') >= 0 && emoticon.src || `${Sticker.DEFAULT_BASE_URL}${emoticon.src}`
         };
       });
-      console.log('Sticker::load()', this.storageKey, this.json);
+      // console.log('Sticker::load()', this.storageKey, this.json);
       localStorage.setItem(this.storageKey, JSON.stringify(this.json));
     });
   }
@@ -54,7 +54,7 @@ class Sticker {
   }
 
   import() {
-    console.log('Sticker::import()', this.storageKey, this.json);
+    // console.log('Sticker::import()', this.storageKey, this.json);
     if (!this.json || !this.json.emoticons || this.json.emoticons.length <= 0) {
       return;
     }

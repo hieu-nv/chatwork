@@ -1,3 +1,7 @@
-body {
-  padding: 20px;
+.emoticon-button {
+  background: url('https://static.xx.fbcdn.net/rsrc.php/v3/ys/r/6f2_cSYxvMi.png') 0 -231px;
+  background-size: 19px;
+  width: 19px;
+  height: 19px;
+  display: inline-block;
 }

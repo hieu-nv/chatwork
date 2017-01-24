@@ -27,3 +27,6 @@ TimeLineView.prototype.getMessagePanel = function (a, b) {
     return '<img alt=\'' + attributes[4] + '\' title=\'' + attributes[4] + '\' src=\'' + match[4] + '\' />';
   });
 };
+$(document).ready(() => {
+  $('#_chatSendTool').append('<li role="button" class="_showDescription" aria-label="Stickers"><span class=" emoticon-button"></span></li>');
+});
