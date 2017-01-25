@@ -3,10 +3,44 @@
   top: 0;
 }
 
-.emoticon-button {
-  background: url('https://static.xx.fbcdn.net/rsrc.php/v3/ys/r/6f2_cSYxvMi.png') 0 -231px;
-  width: 19px;
-  height: 19px;
-  padding: 7px 0;
+.chat-ext-actions {
+  position: absolute;
+  padding: 0 !important;
+  left: 138px;
+}
+
+.action-stickers {
+  background: url('https://static.xx.fbcdn.net/rsrc.php/v3/ys/r/6f2_cSYxvMi.png') 0 -296px no-repeat;
+  opacity: 0.3 !important;
+  width: 32px !important;
+  height: 34px;
   display: inline-block;
+  padding: 0 !important;
+}
+
+.stickers {
+  position: absolute;
+  z-index: 1111;
+}
+
+.stickers-content {
+  position: relative;
+}
+
+.stickers-content .body {
+  width: 361px;
+  height: 285px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.stickers .arrow {
+  position: absolute;
+  right: 0;
+  margin-right: 28px;
+  background: url('https://static.xx.fbcdn.net/rsrc.php/v3/yJ/r/kPXAtAYCglV.png') -17px -233px no-repeat;
+  background-size: auto;
+  width: 16px;
+  height: 8px;
 }
