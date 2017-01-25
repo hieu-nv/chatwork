@@ -69,6 +69,15 @@ class Sticker {
     });
   }
 }
+
+Sticker.popup = () => {
+  let offset = $('#_chatSendArea').offset();
+  $('.stickers').offset({
+    top: offset.top - 301,
+    left: offset.left - 170,
+  });
+};
+
 Sticker.DEFAULT_BASE_URL = 'https://chatpp.thangtd.com/img/emoticons/';
 Sticker.DEFAULT_EMOTICON_URL = 'https://dl.dropboxusercontent.com/s/lmxis68cfh4v1ho/default.json?dl=1';
 Sticker.VIETNAMESE_EMOTICON_URL = 'https://dl.dropboxusercontent.com/s/2b085bilbno4ri1/vietnamese.json?dl=1';

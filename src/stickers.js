@@ -4,10 +4,11 @@ import DefaultSticker from './DefaultSticker';
 import VietnameseSticker from './VietnameseSticker';
 import JapaneseSticker from './JapaneseSticker';
 import SkypeSticker from './SkypeSticker';
+import Sticker from './Sticker';
 
 let defaultSticker = new DefaultSticker();
 defaultSticker.import();
-let vietnameseSticker = new new VietnameseSticker();
+let vietnameseSticker = new VietnameseSticker();
 vietnameseSticker.import();
 let japaneseSticker = new JapaneseSticker();
 japaneseSticker.import();
@@ -36,14 +37,13 @@ $(document).ready(() => {
   const e = document.body || document.head || document.documentElement;
   $('#_chatSendToolbar').append('<ul class="chat-ext-actions"><li class="_showDescription action-stickers" aria-label="Stickers"></li></ul>');
   setTimeout(() => {
-    let offset = $('#_chatSendArea').offset();
-    $(e).append('<div class="stickers" style="display:none;"><div class="stickers-content"><div class="body"></div></div><div class="arrow"></div></div>');
-    $('.stickers').offset({
-      top: offset.top - 285,
-      left: offset.left - 154,
-    });
+    $('#_chatText').focus(Sticker.popup);
+    $('#_chatText').blur(Sticker.popup);
+    $(e).append('<div class="stickers" style="display: none;"><div class="stickers-content"><div class="body"></div></div><div class="arrow"></div></div>');
     $('.chat-ext-actions .action-stickers').click(() => {
       $('.stickers').toggle();
     });
-  }, 5000);
+    Sticker.popup();
+    defaultSticker.build();
+  }, 1000);
 });
