@@ -43,7 +43,18 @@ $(document).ready(() => {
     $('.chat-ext-actions .action-stickers').click(() => {
       $('.stickers').toggle();
     });
-    Sticker.popup();
     defaultSticker.build();
+    vietnameseSticker.build();
+    japaneseSticker.build();
+    skypeSticker.build();
+    Sticker.popup();
+    $(document).on('click', '.stickers-content > .body > img', (e) => {
+      const element = $('#_chatText')[0];
+      let key = $(e.target).data('key');
+      let content = $(element).val();
+      $(element).val(content.slice(0, element.selectionStart) + key + content.slice(element.selectionStart, content.length));
+      Sticker.popup();
+      $('.stickers').toggle();
+    });
   }, 1000);
 });

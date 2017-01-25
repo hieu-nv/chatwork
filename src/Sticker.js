@@ -41,7 +41,7 @@ class Sticker {
       this.json.emoticons = obj.emoticons.map((emoticon) => {
         return {
           key: emoticon.key,
-          src: emoticon.src.indexOf('https') >= 0 && emoticon.src.indexOf('http') >= 0 && emoticon.src || `${Sticker.DEFAULT_BASE_URL}${emoticon.src}`
+          src: (emoticon.src.indexOf('https') === 0 || emoticon.src.indexOf('http') === 0) && emoticon.src || `${Sticker.DEFAULT_BASE_URL}${emoticon.src}`
         };
       });
       // console.log('Sticker::load()', this.storageKey, this.json);
@@ -49,8 +49,14 @@ class Sticker {
     });
   }
 
-  getEmoticons() {
-    return this.json.emoticons
+  build() {
+    if (!this.json && this.json.emoticons.length <= 0) {
+      return;
+    }
+    let elements = this.json.emoticons.map((obj) => {
+      return `<img src="${obj.src}" alt="${obj.key}" style="max-width: 128px; max-height: 128px;" data-key="${obj.key}" />`
+    });
+    $('.stickers-content .body').append(elements.join(' '));
   }
 
   import() {
@@ -61,7 +67,7 @@ class Sticker {
     const {CW: {reg_cmp}} = window;
     const {emoticons} = this.json;
     $(emoticons).each((k, v) => {
-      let src = v.src.indexOf('https') >= 0 && v.src.indexOf('http') >= 0 && v.src || `${DEFAULT_BASE_URL}${v.src}`;
+      let src = (v.src.indexOf('https') === 0 || v.src.indexOf('http') === 0) && v.src || `${Sticker.DEFAULT_BASE_URL}${v.src}`;
       reg_cmp.push({
         key: RegExpFactory.create(v.key),
         rep: `[sticker key="${v.key}"]${src}[/sticker]`,
