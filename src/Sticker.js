@@ -56,7 +56,7 @@ class Sticker {
     let elements = this.json.emoticons.map((obj) => {
       return `<img src="${obj.src}" alt="${obj.key}" style="max-width: 128px; max-height: 128px;" data-key="${obj.key}" />`
     });
-    $('.stickers-content .body').append(elements.join(' '));
+    $('.stickers-content .body').append(elements.join());
   }
 
   import() {
@@ -77,10 +77,10 @@ class Sticker {
 }
 
 Sticker.popup = () => {
-  let offset = $('#_chatSendArea').offset();
+  const offset = $('.action-stickers').offset();
   $('.stickers').offset({
-    top: offset.top - 301,
-    left: offset.left - 170,
+    top: offset.top - 308,
+    left: offset.left - 324,
   });
 };
 

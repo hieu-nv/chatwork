@@ -37,11 +37,16 @@ $(document).ready(() => {
   const e = document.body || document.head || document.documentElement;
   $('#_chatSendToolbar').append('<ul class="chat-ext-actions"><li class="_showDescription action-stickers" aria-label="Stickers"></li></ul>');
   setTimeout(() => {
-    $('#_chatText').focus(Sticker.popup);
-    $('#_chatText').blur(Sticker.popup);
+    let $chatText = $('#_chatText');
+    $chatText.focus(Sticker.popup);
+    $(window).on('resize', Sticker.popup);
+    $chatText.blur(() => {
+      $('.stickers').hide();
+    });
     $(e).append('<div class="stickers" style="display: none;"><div class="stickers-content"><div class="body"></div></div><div class="arrow"></div></div>');
     $('.chat-ext-actions .action-stickers').click(() => {
       $('.stickers').toggle();
+      Sticker.popup();
     });
     defaultSticker.build();
     vietnameseSticker.build();
