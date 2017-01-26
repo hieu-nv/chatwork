@@ -79,7 +79,7 @@ class Sticker {
 Sticker.popup = () => {
   const offset = $('.action-stickers').offset();
   $('.stickers').offset({
-    top: offset.top - 308,
+    top: offset.top - 310,
     left: offset.left - 324,
   });
 };
