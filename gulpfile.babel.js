@@ -145,7 +145,7 @@ gulp.task('wiredep', () => {
 gulp.task('package', function () {
   var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
-      .pipe($.zip('chatwork stickers-' + manifest.version + '.zip'))
+      .pipe($.zip('chatwork-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
 });
 

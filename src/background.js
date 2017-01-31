@@ -5,4 +5,4 @@ chrome.runtime.onInstalled.addListener(details => {
 });
 
 
-console.log('[Chatwork Stickers] background.js');
+console.log('[ChatWork+] background.js');

@@ -1,3 +1,3 @@
 'use strict';
 
-console.log('[Chatwork Stickers] Options.js');
+console.log('[ChatWork+] Options.js');

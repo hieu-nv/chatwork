@@ -1,3 +1,3 @@
 'use strict';
 
-console.log('[Chatwork Stickers] popup.js');
+console.log('[ChatWork+] popup.js');

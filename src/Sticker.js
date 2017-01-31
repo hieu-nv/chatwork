@@ -30,21 +30,21 @@ class Sticker {
   }
 
   load() {
-    // console.log('Sticker::load()', this.contentUrl);
     jQuery.getJSON(this.contentUrl, (obj) => {
       if (!this.ajv(obj) || this.json.version >= obj['data_version']) {
-        // console.log('[Chatwork Stickers] Sticker::load()', this.json);
         return;
       }
       this.json.name = obj['data_name'];
       this.json.version = obj['data_version'];
       this.json.emoticons = obj.emoticons.map((emoticon) => {
+        if (emoticon.src.indexOf('http://i.imgur.com/') === 0 || emoticon.src.indexOf('http://static.skaip.org/img/emoticons/v2/') === 0) {
+          emoticon.src = emoticon.src.replace('http', 'https');
+        }
         return {
           key: emoticon.key,
           src: (emoticon.src.indexOf('https') === 0 || emoticon.src.indexOf('http') === 0) && emoticon.src || `${Sticker.DEFAULT_BASE_URL}${emoticon.src}`
         };
       });
-      // console.log('Sticker::load()', this.storageKey, this.json);
       localStorage.setItem(this.storageKey, JSON.stringify(this.json));
     });
   }
@@ -60,14 +60,13 @@ class Sticker {
   }
 
   import() {
-    // console.log('Sticker::import()', this.storageKey, this.json);
     if (!this.json || !this.json.emoticons || this.json.emoticons.length <= 0) {
       return;
     }
     const {CW: {reg_cmp}} = window;
     const {emoticons} = this.json;
     $(emoticons).each((k, v) => {
-      let src = (v.src.indexOf('https') === 0 || v.src.indexOf('http') === 0) && v.src || `${Sticker.DEFAULT_BASE_URL}${v.src}`;
+      let src = (v.src.indexOf('https') === 0 || v.src.indexOf('http') === 0) && v.src || '';
       reg_cmp.push({
         key: RegExpFactory.create(v.key),
         rep: `[sticker key="${v.key}"]${src}[/sticker]`,
