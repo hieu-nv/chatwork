@@ -57,5 +57,12 @@
     "scripts/stickers.js",
     "styles/main.css",
     "images/icon-48.png"
-  ]
+  ],
+  "app": {
+    "background": {
+      "scripts": [
+        "scripts/app.js"
+      ]
+    }
+  }
 }

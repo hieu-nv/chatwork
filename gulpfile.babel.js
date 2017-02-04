@@ -97,7 +97,8 @@ gulp.task('babel', () => {
     'contentscript.js',
     'stickers.js',
     'options.js',
-    'popup.js'
+    'popup.js',
+    'app.js'
   ];
 
   let tasks = files.map( file => {
